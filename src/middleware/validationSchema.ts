@@ -9,6 +9,7 @@ export const validateInputSchema = <T>(schema: JSONSchemaType<T>) => {
   return (req: Request, res: Response, next: NextFunction) => {
     const valid = validate(req.body)
     if (!valid) {
+      console.log('Validation errors:', validate.errors)
       return res.status(400).json({
         message: 'Validation failed',
         errors: validate.errors

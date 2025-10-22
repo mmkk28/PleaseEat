@@ -1,4 +1,4 @@
-const { createRecipe: createRecipeInDB } = require('../db/functionHandler')
+const { createRecipe: createRecipeInDB } = require('../../db/functionHandler')
 import { type CreateRecipeInput } from '../../schema/Recipe/createRecipe'
 
 export const createRecipe = async (recipeData: CreateRecipeInput) => {
