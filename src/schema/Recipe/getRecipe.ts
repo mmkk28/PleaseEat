@@ -1,4 +1,5 @@
 import type { JSONSchemaType } from 'ajv'
+import type { Recipe } from './commonType'
 
 export interface GetRecipeInput {
   id: string
@@ -7,18 +8,7 @@ export interface GetRecipeInput {
 export interface GetRecipeOutput {
   status: 'success' | 'error'
   message?: string
-  recipe?: {
-    title: string
-    ingredients: string[]
-    instructions: string
-    prepTime?: number // in minutes
-    cookTime?: number // in minutes
-    servings?: number
-    imageUrl?: string
-    tags?: string[]
-    createdAt?: string
-    updatedAt?: string
-  }
+  recipe?: Recipe
 }
 
 export const getRecipeInputSchema: JSONSchemaType<GetRecipeInput> = {
