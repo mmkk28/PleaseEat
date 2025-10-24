@@ -1,15 +1,7 @@
 import type { JSONSchemaType } from 'ajv'
+import type { Recipe } from './commonType'
 
-export interface CreateRecipeInput {
-  title: string
-  ingredients: string[]
-  instructions: string
-  prepTime?: number // in minutes
-  cookTime?: number // in minutes
-  servings?: number
-  imageUrl?: string
-  tags?: string[]
-}
+export type CreateRecipeInput = Omit<Recipe, 'createdAt' | 'updatedAt'>
 
 export interface CreateRecipeOutput {
   status: 'success' | 'error'
