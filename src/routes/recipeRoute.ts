@@ -8,7 +8,7 @@ const { getRecipeInputSchema } = require('../schema/Recipe/getRecipe')
 
 router.post(
   '/create',
-  validateInputSchema(createRecipeInputSchema),
+  validateInputSchema(createRecipeInputSchema, 'body'),
   RecipeController.createRecipe
 )
 
@@ -17,5 +17,7 @@ router.get(
   validateInputSchema(getRecipeInputSchema, 'params'),
   RecipeController.getRecipe
 )
+
+router.get('/', RecipeController.getAllRecipes)
 
 module.exports = router
