@@ -1,5 +1,6 @@
 const { getRecipeById } = require('../../db/functionHandler')
 import { type GetRecipeInput } from '../../schema/Recipe/getRecipe'
+const { transformRecipe } = require('./utils')
 
 export const getRecipe = async (id: GetRecipeInput) => {
   try {
@@ -18,20 +19,5 @@ export const getRecipe = async (id: GetRecipeInput) => {
     }
   } catch (error: Error | any) {
     throw new Error('Error getting recipe: ' + error.message)
-  }
-}
-
-const transformRecipe = (recipe: any) => {
-  let recipeObj = recipe.toObject()
-  delete recipeObj._id
-  delete recipeObj.__v
-  return {
-    ...recipeObj,
-    createdAt: recipeObj.createdAt
-      ? new Date(recipeObj.createdAt).toISOString()
-      : null,
-    updatedAt: recipeObj.updatedAt
-      ? new Date(recipeObj.updatedAt).toISOString()
-      : null
   }
 }
