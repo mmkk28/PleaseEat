@@ -7,3 +7,7 @@ export const createRecipe = async (recipe: any): Promise<any> => {
 export const getRecipeById = async (id: string): Promise<any> => {
   return await Recipe.findById(id)
 }
+
+export const getAllRecipes = async (): Promise<any> => {
+  return await Recipe.find()
+}

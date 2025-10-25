@@ -18,4 +18,6 @@ router.get(
   RecipeController.getRecipe
 )
 
+router.get('/', RecipeController.getAllRecipes)
+
 module.exports = router
