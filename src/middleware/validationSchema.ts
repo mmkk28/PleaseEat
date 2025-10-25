@@ -5,11 +5,14 @@ import addFormats from 'ajv-formats'
 const ajv = new Ajv({ allErrors: true })
 addFormats(ajv)
 
-export const validateInputSchema = <T>(schema: JSONSchemaType<T>) => {
+export const validateInputSchema = <T>(
+  schema: JSONSchemaType<T>,
+  type: 'body' | 'params'
+) => {
   const validate = ajv.compile(schema)
-
   return (req: Request, res: Response, next: NextFunction) => {
-    const valid = validate(req.body)
+    const dataToValidate = type === 'body' ? req.body : req.params
+    const valid = validate(dataToValidate)
     if (!valid) {
       console.log('Validation errors:', validate.errors)
       return res.status(400).json({

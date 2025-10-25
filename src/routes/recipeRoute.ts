@@ -8,7 +8,7 @@ const { getRecipeInputSchema } = require('../schema/Recipe/getRecipe')
 
 router.post(
   '/create',
-  validateInputSchema(createRecipeInputSchema),
+  validateInputSchema(createRecipeInputSchema, 'body'),
   RecipeController.createRecipe
 )
 
