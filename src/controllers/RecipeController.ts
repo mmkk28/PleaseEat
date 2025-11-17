@@ -1,5 +1,5 @@
 import { Error } from 'mongoose'
-import { validateOutputSchema } from '../middleware/validationSchema'
+import { validateOutputSchema } from '../schema/validationSchema'
 
 // Actions
 import { RecipeActions } from '../actions/recipe'

@@ -20,7 +20,6 @@ export const validateInputSchema = <T>(
         errors: validate.errors
       })
     }
-    next()
   }
 }
 

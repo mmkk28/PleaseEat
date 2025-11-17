@@ -9,6 +9,6 @@ export const createRecipe = async (recipeData: CreateRecipeInput) => {
       message: 'Recipe created successfully with ID: ' + result._id
     }
   } catch (error: Error | any) {
-    throw new Error('Error creating recipe: ' + error.message)
+    throw new Error('An error occurred (#RC01) Please try again')
   }
 }
