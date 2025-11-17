@@ -16,7 +16,14 @@ app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ limit: '20mb', extended: true }))
 
 app.get('/', (req: any, res: any) => {
-  res.send('Hello World!')
+  res.send(/*html*/ `
+    <html>
+      <header><title>PleaseEat API</title></header>
+      <body>
+      <h1>PleaseEat API is running</h1>
+      </body>
+    </html>
+    `)
 })
 
 app.use('/recipe', recipeRoute)
