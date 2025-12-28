@@ -8,14 +8,14 @@ This project is not intended for production but serves as a sandbox for explorin
 
 ## 🚀 Features
 
-* **Express.js REST API** following clean and modular architecture
-* **MongoDB (Mongoose)** for data persistence
-* **AJV** for runtime input and output validation using JSON Schema
-* **TypeScript** for type safety and maintainable code
-* **MVC-inspired structure** separating controllers, models, and routes
-* CRUD operations for recipe data (Create, Read All, Read by ID, etc.)
-* **Environment variable management** using dotenv
-* Future testing setup planned with **Mocha + Chai**
+- **Express.js REST API** following clean and modular architecture
+- **MongoDB (Mongoose)** for data persistence
+- **AJV** for runtime input and output validation using JSON Schema
+- **TypeScript** for type safety and maintainable code
+- **MVC-inspired structure** separating controllers, models, and routes
+- CRUD operations for recipe data (Create, Read All, Read by ID, etc.)
+- **Environment variable management** using dotenv
+- Future testing setup planned with **Mocha + Chai**
 
 ---
 
@@ -45,9 +45,9 @@ PleaseEat/
 
 Make sure you have the following installed:
 
-* **Node.js** (v18+ recommended)
-* **npm** or **yarn**
-* **MongoDB** (local or cloud instance such as MongoDB Atlas)
+- **Node.js** (v18+ recommended)
+- **npm** or **yarn**
+- **MongoDB** (local or cloud instance such as MongoDB Atlas)
 
 ### Installation
 
@@ -66,7 +66,7 @@ touch .env
 Add your environment variables in `.env`:
 
 ```
-MONGO_URI=mongodb+srv://<your-connection-string>
+MONGO_URL=mongodb+srv://<your-connection-string>
 PORT=3000
 ```
 
@@ -113,16 +113,16 @@ POST /api/recipes
 
 This repository is part of a personal journey to:
 
-* Practise designing scalable backend architecture.
-* Learn how to enforce data validation using AJV.
-* Gain experience working with MongoDB and TypeScript.
-* Prepare for building more complex full-stack applications.
+- Practise designing scalable backend architecture.
+- Learn how to enforce data validation using AJV.
+- Gain experience working with MongoDB and TypeScript.
+- Prepare for building more complex full-stack applications.
 
 ---
 
 ## 🧹 Future Improvements
 
-* Add **update** and **delete** recipe functions.
-* Integrate **Mocha + Chai** for unit and integration testing.
-* Add pagination and filtering to the recipe listing endpoint.
-* Enhance error handling and logging for production-like scenarios.
+- Add **update** and **delete** recipe functions.
+- Integrate **Mocha + Chai** for unit and integration testing.
+- Add pagination and filtering to the recipe listing endpoint.
+- Enhance error handling and logging for production-like scenarios.
