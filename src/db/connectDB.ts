@@ -2,18 +2,17 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 
 export const connectDB = async (): Promise<void> => {
-  const mongoURI = process.env.MONGO_URL || ''
+  const mongoURL = process.env.MONGO_URL || ''
 
-  if (!mongoURI) {
+  if (!mongoURL) {
     throw new Error('MONGO_URL is not defined in environment variables')
   }
 
   try {
-    await mongoose.connect(mongoURI)
+    await mongoose.connect(mongoURL)
     console.log('DB connected!')
   } catch (err) {
     console.error('Failed to connect to MongoDB', err)
-    throw err
-    process.exit(1)
+    throw new Error('Failed to connect to MongoDB')
   }
 }

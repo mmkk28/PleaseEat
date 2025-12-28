@@ -15,9 +15,9 @@ export const validateInputSchema = <T>(
     const valid = validate(dataToValidate)
     if (!valid) {
       console.log('Validation errors:', validate.errors)
-      return res.status(400).json({
-        message: 'Validation failed',
-        errors: validate.errors
+      return res.status(404).json({
+        message: 'Internal Server Error',
+        errors: 'Internal Server Error'
       })
     }
   }

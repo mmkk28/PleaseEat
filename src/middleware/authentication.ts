@@ -15,9 +15,6 @@ export const authenticateCookie = (req: any, res: any, next: any) => {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 7
     })
-    req.cookies = { ...(req.cookies || {}), sessionToken: newToken }
-  } else {
-    req.cookies = { ...(req.cookies || {}), sessionToken }
   }
 
   next()
