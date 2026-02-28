@@ -11,6 +11,7 @@ const recipeRoute = require('./routes/recipeRoute')
 
 //middleware
 const { authenticateCookie } = require('./middleware/authentication')
+const { errorHandler } = require('./middleware/errorHandler')
 
 dotenv.config()
 
@@ -27,6 +28,8 @@ app.get('/', (req: any, res: any) => {
 })
 
 app.use('/recipe', recipeRoute)
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
