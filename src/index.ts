@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const app = express()
 const port = 3000
 const { connectDB } = require('./db/connectDB')
+const { startErrorSyncJob } = require('./jobs/syncErrors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
@@ -17,6 +18,7 @@ dotenv.config()
 
 //start connect to mongoDB
 connectDB()
+startErrorSyncJob()
 
 app.use(cookieParser())
 app.use(express.json({ limit: '20mb' }))

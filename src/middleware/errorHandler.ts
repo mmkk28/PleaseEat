@@ -1,36 +1,32 @@
-const logger = require('./config/logger')
-const ErrorLog = require('./models/ErrorLog')
+import { saveErrorLog } from '../db/functionHandler'
+import { saveError } from '../utils/offlineErrorLogger'
 
 export const errorHandler = async (err: any, req: any, res: any, next: any) => {
   const statusCode = err.status || 500
 
-  // 1️⃣ Log to file
-  logger.error({
+  // 1️⃣ DB First: Save ALL errors to MongoDB
+  const errorData = {
     message: err.message,
     stack: err.stack,
     method: req.method,
     url: req.originalUrl,
-    statusCode
-  })
+    statusCode,
+    user: req.user?.id || null,
+    createdAt: new Date()
+  }
 
-  // 2️⃣ Save only serious errors to DB
-  if (statusCode >= 500) {
-    try {
-      await ErrorLog.create({
-        message: err.message,
-        stack: err.stack,
-        method: req.method,
-        url: req.originalUrl,
-        statusCode,
-        user: req.user?.id || null
-      })
-    } catch (dbError) {
-      logger.error(dbError) // log DB failure
-    }
+  try {
+    await saveErrorLog(errorData)
+  } catch (dbError) {
+    // 2️⃣ Fallback: Save to offline file if DB is unavailable
+    console.error('DB failure: saving error to offline log')
+    await saveError(errorData)
   }
 
   res.status(statusCode).json({
-    message: statusCode === 500 ? 'Internal Server Error' : err.message
+    message:
+      statusCode === 500
+        ? 'Internal Server Error'
+        : 'something went wrong, please try again later'
   })
-  next()
 }

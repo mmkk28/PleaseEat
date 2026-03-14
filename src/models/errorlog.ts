@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 
 const errorSchema = new mongoose.Schema({
+  localId: { type: String, unique: true, sparse: true },
   message: { type: String, required: true },
   stack: String,
   method: String,
