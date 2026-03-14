@@ -17,7 +17,8 @@ This project is not intended for production but serves as a sandbox for explorin
 - **Environment variable management** using dotenv
 - **Centralised error handling** middleware with structured error logging to MongoDB
 - **Offline error fallback** — errors are written to a local file when the DB is unavailable, and synced back automatically via a background job
-- Future testing setup planned with **Mocha + Chai**
+- **Unit tests** with **Mocha + Chai + Sinon**, covering actions, middleware, utils, and validation
+- **GitHub Actions CI** — tests run automatically on every pull request
 
 ---
 
@@ -25,6 +26,9 @@ This project is not intended for production but serves as a sandbox for explorin
 
 ```
 PleaseEat/
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions CI (runs tests on every PR)
 ├── src/
 │   ├── actions/            # Business logic
 │   ├── controllers/        # Request handlers that call business logic
@@ -37,7 +41,9 @@ PleaseEat/
 │   ├── utils/              # Utilities (e.g. offline error logger)
 │   ├── views/              # Static HTML views
 │   └── index.ts            # Entry point
+├── tests/                  # Mocha unit tests
 ├── .gitignore
+├── .mocharc.yml
 ├── package.json
 └── tsconfig.json
 ```
@@ -128,5 +134,4 @@ This repository is part of a personal journey to:
 ## 🧹 Future Improvements
 
 - Add **update** and **delete** recipe functions.
-- Integrate **Mocha + Chai** for unit and integration testing.
 - Add pagination and filtering to the recipe listing endpoint.
