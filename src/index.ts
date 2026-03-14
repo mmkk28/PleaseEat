@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const app = express()
 const port = 3000
 const { connectDB } = require('./db/connectDB')
+const { startErrorSyncJob } = require('./jobs/syncErrors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 
@@ -11,11 +12,13 @@ const recipeRoute = require('./routes/recipeRoute')
 
 //middleware
 const { authenticateCookie } = require('./middleware/authentication')
+const { errorHandler } = require('./middleware/errorHandler')
 
 dotenv.config()
 
 //start connect to mongoDB
 connectDB()
+startErrorSyncJob()
 
 app.use(cookieParser())
 app.use(express.json({ limit: '20mb' }))
@@ -27,6 +30,8 @@ app.get('/', (req: any, res: any) => {
 })
 
 app.use('/recipe', recipeRoute)
+
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

@@ -22,11 +22,3 @@ export const validateInputSchema = <T>(
     }
   }
 }
-
-export const validateOutputSchema = <T>(
-  schema: JSONSchemaType<T>,
-  data: any
-): boolean => {
-  const validate = ajv.compile(schema)
-  return validate(data) as boolean
-}
