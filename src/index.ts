@@ -20,10 +20,13 @@ dotenv.config()
 connectDB()
 startErrorSyncJob()
 
+app.use(express.static(path.join(__dirname, 'views')))
 app.use(cookieParser())
 app.use(express.json({ limit: '20mb' }))
 app.use(express.urlencoded({ limit: '20mb', extended: true }))
 app.use(authenticateCookie)
+
+app.get('/favicon.ico', (_req: any, res: any) => res.sendStatus(204))
 
 app.get('/', (req: any, res: any) => {
   res.sendFile(path.join(__dirname, 'views', 'index.html'))

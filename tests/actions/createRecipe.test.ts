@@ -6,7 +6,11 @@ describe('createRecipe action', () => {
   let createRecipe: any
   let createRecipeInDB: sinon.SinonStub
 
-  const validInput = { title: 'Pasta', ingredients: ['pasta'], instructions: 'Boil.' }
+  const validInput = {
+    title: 'Pasta',
+    ingredients: ['pasta'],
+    instructions: 'Boil.'
+  }
 
   beforeEach(() => {
     createRecipeInDB = sinon.stub()
@@ -23,7 +27,7 @@ describe('createRecipe action', () => {
     const result = await createRecipe(validInput)
     expect(result).to.deep.equal({
       status: 'success',
-      message: 'Recipe created successfully with ID: abc123'
+      message: 'Recipe created successfully'
     })
   })
 

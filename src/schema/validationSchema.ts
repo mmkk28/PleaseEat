@@ -20,5 +20,6 @@ export const validateInputSchema = <T>(
         errors: 'Internal Server Error'
       })
     }
+    next()
   }
 }

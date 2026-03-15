@@ -45,10 +45,11 @@ describe('validateInputSchema', () => {
     expect(res.status.calledWith(404)).to.be.true
   })
 
-  it('does not send an error response for valid body data', () => {
+  it('calls next() and sends no response for valid body data', () => {
     const middleware = validateInputSchema(schema, 'body')
     middleware({ body: { name: 'Alice', age: 30 } } as any, res, next)
     expect(res.status.called).to.be.false
+    expect(next.calledOnce).to.be.true
   })
 
   it('validates params when type is "params"', () => {

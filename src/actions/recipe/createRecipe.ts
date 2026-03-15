@@ -6,7 +6,7 @@ export const createRecipe = async (recipeData: CreateRecipeInput) => {
     const result = await createRecipeInDB(recipeData)
     return {
       status: 'success',
-      message: 'Recipe created successfully with ID: ' + result._id
+      message: 'Recipe created successfully'
     }
   } catch (error: Error | any) {
     throw new Error('An error occurred (#RC01) Please try again')
