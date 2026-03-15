@@ -15,7 +15,10 @@ This project is not intended for production but serves as a sandbox for explorin
 - **MVC-inspired structure** separating controllers, models, and routes
 - CRUD operations for recipe data (Create, Read All, Read by ID, etc.)
 - **Environment variable management** using dotenv
-- Future testing setup planned with **Mocha + Chai**
+- **Centralised error handling** middleware with structured error logging to MongoDB
+- **Offline error fallback** — errors are written to a local file when the DB is unavailable, and synced back automatically via a background job
+- **Unit tests** with **Mocha + Chai + Sinon** (35 tests), covering actions, middleware, background jobs, utils, and validation
+- **GitHub Actions CI** — tests run automatically on every pull request
 
 ---
 
@@ -23,16 +26,29 @@ This project is not intended for production but serves as a sandbox for explorin
 
 ```
 PleaseEat/
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions CI (runs tests on every PR)
 ├── src/
-│   ├── action/             # Business Logic
+│   ├── actions/            # Business logic
+│   ├── controllers/        # Request handlers that call business logic
 │   ├── db/                 # Database connection and operations
-│   ├── schema/             # Input/output validation schemas (using AJV)
-│   ├── controllers/        # Call the functions to run business logic
+│   ├── jobs/               # Background jobs (e.g. offline error sync)
+│   ├── middleware/         # Express middleware (error handling, authentication)
+│   ├── models/             # Mongoose models
 │   ├── routes/             # Express routes and endpoints
-│   ├── models/             # Models for database
-│   ├── middlewares/        # Validation function for all the functions and else
+│   ├── schema/             # Input/output validation schemas (using AJV)
+│   ├── utils/              # Utilities (e.g. offline error logger)
+│   ├── views/              # Static HTML views
 │   └── index.ts            # Entry point
+├── tests/
+│   ├── actions/            # Tests for business logic (createRecipe, getRecipe, etc.)
+│   ├── jobs/               # Tests for background jobs (syncErrors)
+│   ├── middleware/         # Tests for errorHandler and authentication
+│   ├── schema/             # Tests for AJV input validation
+│   └── utils/              # Tests for offlineErrorLogger
 ├── .gitignore
+├── .mocharc.yml
 ├── package.json
 └── tsconfig.json
 ```
@@ -123,6 +139,4 @@ This repository is part of a personal journey to:
 ## 🧹 Future Improvements
 
 - Add **update** and **delete** recipe functions.
-- Integrate **Mocha + Chai** for unit and integration testing.
 - Add pagination and filtering to the recipe listing endpoint.
-- Enhance error handling and logging for production-like scenarios.

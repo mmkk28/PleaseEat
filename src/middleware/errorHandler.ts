@@ -20,7 +20,11 @@ export const errorHandler = async (err: any, req: any, res: any, next: any) => {
   } catch (dbError) {
     // 2️⃣ Fallback: Save to offline file if DB is unavailable
     console.error('DB failure: saving error to offline log')
-    await saveError(errorData)
+    try {
+      await saveError(errorData)
+    } catch (fileError) {
+      console.error('Failed to save error to offline log:', fileError)
+    }
   }
 
   res.status(statusCode).json({
