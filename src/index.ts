@@ -34,10 +34,6 @@ app.get('/', (req: any, res: any) => {
 
 app.use('/recipe', recipeRoute)
 
-app.get('/test/trigger-error', () => {
-  throw Object.assign(new Error('Deliberate test error'), { status: 500 })
-})
-
 app.use(errorHandler)
 
 app.listen(port, () => {
