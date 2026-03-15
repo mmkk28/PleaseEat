@@ -17,7 +17,7 @@ This project is not intended for production but serves as a sandbox for explorin
 - **Environment variable management** using dotenv
 - **Centralised error handling** middleware with structured error logging to MongoDB
 - **Offline error fallback** — errors are written to a local file when the DB is unavailable, and synced back automatically via a background job
-- **Unit tests** with **Mocha + Chai + Sinon**, covering actions, middleware, utils, and validation
+- **Unit tests** with **Mocha + Chai + Sinon** (35 tests), covering actions, middleware, background jobs, utils, and validation
 - **GitHub Actions CI** — tests run automatically on every pull request
 
 ---
@@ -41,7 +41,12 @@ PleaseEat/
 │   ├── utils/              # Utilities (e.g. offline error logger)
 │   ├── views/              # Static HTML views
 │   └── index.ts            # Entry point
-├── tests/                  # Mocha unit tests
+├── tests/
+│   ├── actions/            # Tests for business logic (createRecipe, getRecipe, etc.)
+│   ├── jobs/               # Tests for background jobs (syncErrors)
+│   ├── middleware/         # Tests for errorHandler and authentication
+│   ├── schema/             # Tests for AJV input validation
+│   └── utils/              # Tests for offlineErrorLogger
 ├── .gitignore
 ├── .mocharc.yml
 ├── package.json
