@@ -4,6 +4,8 @@ A personal learning project focused on improving **backend development skills** 
 
 This project is not intended for production but serves as a sandbox for exploring best practices in **API design**, **data validation**, **schema modelling**, and **testing**.
 
+**Live demo:** https://mai.vttcps.com/
+
 ---
 
 ## 🚀 Features
@@ -49,6 +51,8 @@ PleaseEat/
 │   └── utils/              # Tests for offlineErrorLogger
 ├── .gitignore
 ├── .mocharc.yml
+├── Dockerfile
+├── docker-compose.yml
 ├── package.json
 └── tsconfig.json
 ```
@@ -61,7 +65,7 @@ PleaseEat/
 
 Make sure you have the following installed:
 
-- **Node.js** (v18+ recommended)
+- **Node.js** (v20+ recommended)
 - **npm** or **yarn**
 - **MongoDB** (local or cloud instance such as MongoDB Atlas)
 
@@ -103,19 +107,19 @@ npm start
 **GET all recipes**
 
 ```shell
-GET /api/recipes
+GET /recipe
 ```
 
 **GET a recipe by ID**
 
 ```shell
-GET /api/recipes/:id
+GET /recipe/:id
 ```
 
 **POST a new recipe**
 
 ```shell
-POST /api/recipes
+POST /recipe/create
 {
   "title": "Omelet",
   "ingredients": ["egg", "oil", "soy sauce"],
