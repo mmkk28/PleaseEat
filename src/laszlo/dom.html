@@ -1,0 +1,58 @@
+<html>
+
+  <head></head>
+
+  <body>
+    hello Mai
+    <div id="buttons-wrapper" style="padding: 20px; border: 1px dotted red;">
+      <button id="invoke" class="dontclickbutton">
+        <span>icon</span> Dont click me
+      </button>
+      <button id="invoke2" class="dontclickbutton">Dont click me 2</button>
+    </div>
+  </body>
+
+  <script>
+    (() => {
+      console.log('called from an anonymous function')
+
+      let something = 'abc'
+      let something2 = 'xyz'
+
+      function alertMe(value) {
+        alert(value)
+      }
+
+      // const button = document.getElementById('invoke')
+      // button.addEventListener('click', (event) => {
+      //   alertMe(something)
+      // })
+
+      // const button2 = document.getElementById('invoke2')
+      // button2.addEventListener('click', (event) => {
+      //   alertMe(something2)
+      // })
+
+      function clickEvent(event) {
+        if (event.target.closest('.dontclickbutton')) {
+          console.log('you clicked the button')
+          if (event.target.closest('#invoke')) {
+            console.log('you clicked invoke')
+          } else if (event.target.closest('#invoke2')) {
+            console.log('you clicked invoke2')
+          }
+        }
+      }
+
+      // document.getElementById('buttons-wrapper').addEventListener('click', (event) => {
+      document.removeEventListener('click', clickEvent)
+      document.addEventListener('click', clickEvent)
+
+      // document.getElementById('buttons-wrapper').addEventListener('contextmenu', (event) => {
+      //   event.preventDefault()
+      //   console.log('right mouse key')
+      // })
+    })()
+  </script>
+
+</html>
