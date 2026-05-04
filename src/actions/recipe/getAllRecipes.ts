@@ -16,7 +16,7 @@ export const getAllRecipe = async () => {
       status: 'success',
       recipe: recipes
     }
-  } catch (error: Error | any) {
+  } catch {
     throw new Error('An error occurred (#RC02) Please try again')
   }
 }

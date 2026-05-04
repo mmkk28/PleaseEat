@@ -47,7 +47,7 @@
       }
 
       renderRecipes(data)
-    } catch (e) {
+    } catch {
       list.innerHTML = `<p class="empty-state error-state">Could not reach the server. Is it running?</p>`
     } finally {
       setLoading('btn-load', false)

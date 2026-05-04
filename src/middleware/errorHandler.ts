@@ -1,7 +1,7 @@
 import { saveErrorLog } from '../db/functionHandler'
 import { saveError } from '../utils/offlineErrorLogger'
 
-export const errorHandler = async (err: any, req: any, res: any, next: any) => {
+export const errorHandler = async (err: any, req: any, res: any, _next: any) => {
   const statusCode = err.status || 500
 
   // 1️⃣ DB First: Save ALL errors to MongoDB
@@ -17,7 +17,7 @@ export const errorHandler = async (err: any, req: any, res: any, next: any) => {
 
   try {
     await saveErrorLog(errorData)
-  } catch (dbError) {
+  } catch {
     // 2️⃣ Fallback: Save to offline file if DB is unavailable
     console.error('DB failure: saving error to offline log')
     try {

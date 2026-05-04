@@ -1,5 +1,5 @@
 export const transformRecipe = (recipe: any) => {
-  let recipeObj = recipe.toObject()
+  const recipeObj = recipe.toObject()
   delete recipeObj._id
   delete recipeObj.__v
   return {
