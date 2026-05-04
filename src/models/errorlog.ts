@@ -7,6 +7,7 @@ const errorSchema = new mongoose.Schema({
   method: String,
   url: String,
   statusCode: Number,
+  body: { type: mongoose.Schema.Types.Mixed },
   user: String,
   createdAt: { type: Date, default: Date.now }
 })
