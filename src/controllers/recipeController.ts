@@ -1,5 +1,3 @@
-import { Error } from 'mongoose'
-
 // Actions
 import { RecipeActions } from '../actions/recipe'
 

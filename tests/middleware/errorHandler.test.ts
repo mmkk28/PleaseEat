@@ -56,4 +56,23 @@ describe('errorHandler', () => {
     await errorHandler({ message: 'Unknown' }, req, res, next)
     expect(res.status.calledWith(500)).to.be.true
   })
+
+  it('includes request body in saved error data', async () => {
+    saveErrorLog.resolves()
+    req.body = { title: 'Pasta', servings: 2 }
+    await errorHandler({ message: 'Crash', status: 500 }, req, res, next)
+    const saved = saveErrorLog.firstCall.args[0]
+    expect(saved.body).to.deep.equal({ title: 'Pasta', servings: 2 })
+  })
+
+  it('redacts sensitive fields in the body before saving', async () => {
+    saveErrorLog.resolves()
+    req.body = { email: 'a@b.com', password: 'secret123', token: 'abc', apiKey: 'xyz' }
+    await errorHandler({ message: 'Crash', status: 500 }, req, res, next)
+    const saved = saveErrorLog.firstCall.args[0]
+    expect(saved.body.email).to.equal('a@b.com')
+    expect(saved.body.password).to.equal('[REDACTED]')
+    expect(saved.body.token).to.equal('[REDACTED]')
+    expect(saved.body.apiKey).to.equal('xyz')
+  })
 })

@@ -28,7 +28,7 @@ export const getUnsavedErrors = async (): Promise<any[]> => {
           .map(line => {
             try {
               return JSON.parse(line);
-            } catch (parseError) {
+            } catch {
               console.error('Skipping corrupted offline error log line:', line);
               return null; // Ignore this specific broken line
             }

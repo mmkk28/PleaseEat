@@ -17,7 +17,7 @@ export const getRecipe = async (id: GetRecipeInput) => {
       status: 'success',
       recipe: recipe
     }
-  } catch (error: Error | any) {
+  } catch {
     throw new Error('An error occurred (#RC03) Please try again')
   }
 }
